@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+    .bold-h1 {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="{{ url_for('staff_account') }}">OnlyGreenThings</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link" href="{{ url_for('staff_products') }}">Products</a>
+        <a class="nav-link" href="{{ url_for('staff_support') }}">Support</a>
+        <a class="nav-link" href="{{ url_for('staff_about_us') }}">About Us</a>
+        <a class="nav-link active" aria-current="page" href="{{ url_for('staff_account') }}">Account</a>
+      </div>
+    </div>
+  </div>
+</nav>
+    <a href="{{ url_for('staff_account') }}">Back to account</a>
+    <h1 class="text-center mt-5 bold-h1">Account Information</h1>
+    <br>
+    <div class="container mt-5">
+        <h2>Account Information</h2>
+        <p>First Name: {{ staff.first_name }}</p>
+        <p>Last Name: {{ staff.last_name }}</p>
+        <p>Email: {{ staff.email }}</p>
+        <a href="{{ url_for('staff_edit') }}" class="btn btn-primary">Edit Account</a>
+    </div>
+</body>
+</html>
