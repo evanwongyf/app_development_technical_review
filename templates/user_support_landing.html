@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Support</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e1d5b8;
+        }
+        .green-text {
+            color: #237300;
+        }
+        .bold-h1 {
+            font-weight: bold;
+        }
+        .custom-paragraph {
+            font-size: 20px;
+        }
+        .custom-button {
+            background-color: #014421 !important;
+            color: #fff;
+            border: none;
+            box-shadow: none;
+        }
+        .custom-button:hover {
+            background-color: #014421 !important;
+        }
+        .navbar-custom {
+            background-color: #738054 !important;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-brand:focus,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .button-spacing {
+            margin-right: 8px;
+        }
+        .chatbot-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #237300;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('user_account') }}">OnlyGreenThings</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('user_used') }}">Used</a>
+                    <a class="nav-link" href="{{ url_for('user_products') }}">Products</a>
+                    <a class="nav-link active" href="{{ url_for('user_support') }}">Support</a>
+                    <a class="nav-link" href="{{ url_for('user_about_us') }}">About Us</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('user_account') }}">Account</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1 class="text-center mt-5 bold-h1 green-text">Support</h1>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a href="{{ url_for('user_support_enquiries') }}" class="btn btn-primary custom-button button-spacing btn-lg">Connect</a>
+        <a href="{{url_for('user_support_feedback')}}" class="btn btn-primary custom-button btn-lg" role="button" aria-pressed="true">Feedback</a>
+    </div>
+    <a href="{{ url_for('chatbot') }}" class="chatbot-fab">
+        <i class="fas fa-comments"></i>
+        </a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
