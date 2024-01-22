@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Feedback</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e1d5b8;
+            font-family: Arial, sans-serif;
+        }
+        .navbar-custom {
+            background-color: #738054 !important;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .feedback-box {
+            background-color: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 10px;
+            max-width: 600px;
+        }
+        .custom-button {
+            background-color: #014421;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .custom-button:hover {
+            background-color: #012f1b;
+        }
+        .update-button, .delete-button {
+            background-color: #014421;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .update-button:hover, .delete-button:hover {
+            background-color: #012f1b;
+        }
+        .feedback-entry {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #738054;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+        .feedback-entry p {
+            margin: 5px 0;
+        }
+        .bold-h1 {
+            font-weight: bold;
+            text-align: center;
+            color: #237300;
+            margin-top: 50px;
+        }
+        .chatbot-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #237300;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('user_account') }}">OnlyGreenThings</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('user_used') }}">Used</a>
+                    <a class="nav-link" href="{{ url_for('user_products') }}">Products</a>
+                    <a class="nav-link active" href="{{ url_for('user_support') }}">Support</a>
+                    <a class="nav-link" href="{{ url_for('user_about_us') }}">About Us</a>
+                    <a class="nav-link" aria-current="page" href="{{ url_for('user_account') }}">Account</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <h1 class="bold-h1 mt-5">Feedback</h1>
+
+    <div class="feedback-box">
+        <form action="{{ url_for('user_support_create_feedback') }}" method="post">
+            <div class="mb-3">
+                <label class="form-label">Rating (1-5):</label><br>
+                <input type="radio" id="rating1" name="rating" value="1" required>
+                <label for="rating1">1</label><br>
+                <input type="radio" id="rating2" name="rating" value="2">
+                <label for="rating2">2</label><br>
+                <input type="radio" id="rating3" name="rating" value="3">
+                <label for="rating3">3</label><br>
+                <input type="radio" id="rating4" name="rating" value="4">
+                <label for="rating4">4</label><br>
+                <input type="radio" id="rating5" name="rating" value="5">
+                <label for="rating5">5</label>
+            </div>
+            <div class="mb-3">
+                <label for="message" class="form-label">Message:</label>
+                <textarea class="form-control" id="message" name="message" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="custom-button">Submit</button>
+        </form>
+
+        <h3 class="mt-4">Submitted Feedback:</h3>
+        <ol>
+            {% for feedback in feedback_data %}
+                <li class="feedback-entry">
+                    <p>Rating: {{ feedback.rating }}</p>
+                    <p>Message: {{ feedback.message }}</p>
+                    <a href="{{ url_for('user_support_update_feedback', feedback_id=feedback.id) }}" class="update-button">Update</a>
+                    <a href="{{ url_for('user_support_delete_feedback', feedback_id=feedback.id) }}" class="delete-button">Delete</a>
+                </li>
+            {% else %}
+                <p>No feedback entries available.</p>
+            {% endfor %}
+        </ol>
+    </div>
+
+    <a href="{{ url_for('chatbot') }}" class="chatbot-fab">
+        <i class="fas fa-comments"></i>
+    </a>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
