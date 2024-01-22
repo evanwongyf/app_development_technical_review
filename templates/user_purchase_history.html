@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User Purchase History</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #e1d5b8;
+        }
+        .green-text {
+            color: #237300;
+        }
+        .bold-h1 {
+            font-weight: bold;
+        }
+        .navbar-custom {
+            background-color: #738054 !important;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-brand:focus,
+        .navbar-custom .navbar-nav .nav-link {
+            color: #ffffff !important;
+        }
+        .table {
+            background-color: #f8f9fa;
+        }
+        .chatbot-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #237300;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('user_account') }}">OnlyGreenThings</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('user_used') }}">Used</a>
+                    <a class="nav-link" href="{{ url_for('user_products') }}">Products</a>
+                    <a class="nav-link" href="{{ url_for('user_support') }}">Support</a>
+                    <a class="nav-link" href="{{ url_for('user_about_us') }}">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('user_account') }}">Account</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <h2 class="bold-h1 green-text">Purchase History</h2>
+        {% if purchases %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Product</th>
+                    <th scope="col">Brand</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Amount</th>
+                    <th scope="col">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for purchase in purchases %}
+                <tr>
+                    <td>{{ purchase.product_name }}</td>
+                    <td>{{ purchase.brand }}</td>
+                    <td>${{ '%.2f' | format(purchase.price) }}</td>
+                    <td>{{ purchase.quantity }}</td>
+                    <td>${{ '%.2f' | format(purchase.total_amount) }}</td>
+                    <td>{{ purchase.purchase_date.strftime('%Y-%m-%d') }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info">
+            You have no purchase history.
+        </div>
+        {% endif %}
+    </div>
+        <a href="{{ url_for('chatbot') }}" class="chatbot-fab">
+        <i class="fas fa-comments"></i>
+        </a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
