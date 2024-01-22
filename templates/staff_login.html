@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <title>Staff Login</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
-         .bold-h1 {
+        body {
+            background-color: #e1d5b8;
+        }
+        .green-text {
+            color: #237300;
+        }
+        .bold-h1 {
             font-weight: bold;
+        }
+        .button-spacing {
+            margin: 0 4px;
+        }
+        .custom-paragraph {
+            font-size: 15px;
+        }
+        .custom-button {
+            background-color: #014421 !important;
+            color: #fff;
+        }
+        .break1 {
+            margin-bottom: 0.5px;
+        }
+        .navbar-custom {
+            background-color: #738054 !important;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-brand:focus {
+            color: #ffffff !important;
         }
     </style>
 </head>
@@ -23,10 +49,9 @@
     {% endwith %}
 
     <a href="{{ url_for('login_landing') }}">Back</a>
-    <h1 class="text-center mt-5 bold-h1">Staff Login</h1>
-    <br>
+    <h1 class="text-center mt-5 bold-h1 green-text">Staff Login</h1>
+    <br class="break1">
     <div class="container mt-5">
-        <h2>Login</h2>
         <form method="post">
             {{ form.hidden_tag() }}
             <div class="mb-3">
@@ -37,9 +62,9 @@
                 {{ form.password.label }}
                 {{ form.password(class="form-control") }}
             </div>
-            <button type="submit" class="btn btn-primary">{{ form.submit.label }}</button>
+            <button type="submit" class="btn btn-primary custom-button">{{ form.submit.label }}</button>
         </form>
-        <a href="{{ url_for('sign_up_landing') }}">Don't have an account? Sign up</a>
+        <p class="text-center custom-paragraph">Don't have an account? <a href="{{ url_for('sign_up_landing') }}" class="green-text">Sign up</a></p>
     </div>
 </body>
 </html>
