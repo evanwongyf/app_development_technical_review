@@ -2,41 +2,85 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home Page</title>
+    <title>User Account</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet">
     <style>
+        body {
+            background-color: #e1d5b8;
+        }
+        .green-text {
+            color: #237300;
+        }
         .bold-h1 {
             font-weight: bold;
+        }
+        .button-spacing {
+            margin: 0 4px;
+        }
+        .custom-paragraph {
+            font-size: 20px;
+        }
+        .custom-button {
+            background-color: #014421 !important;
+            color: #fff;
+        }
+        .navbar-custom {
+            background-color: #738054 !important;
+        }
+        .navbar-custom .navbar-brand,
+        .navbar-custom .navbar-brand:hover,
+        .navbar-custom .navbar-brand:focus,
+        .navbar-custom .navbar-nav .nav-link { /* Added this style to make navbar words white */
+            color: #ffffff !important;
+        }
+        .chatbot-fab {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #237300;
+            color: white;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
     </style>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="{{ url_for('user_account') }}">OnlyGreenThings</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-      <div class="navbar-nav">
-        <a class="nav-link" href="{{ url_for('user_used') }}">Used</a>
-        <a class="nav-link" href="{{ url_for('user_products') }}">Products</a>
-        <a class="nav-link" href="{{ url_for('user_support') }}">Support</a>
-          <a class="nav-link" href="{{ url_for('user_about_us') }}">About Us</a>
-          <a class="nav-link active" aria-current="page" href="{{ url_for('user_account') }}">Account</a>
-      </div>
-    </div>
-  </div>
-</nav>
-    <h1 class="text-center mt-5 bold-h1">Welcome To OnlyGreenThings!</h1>
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ url_for('user_account') }}">OnlyGreenThings</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="{{ url_for('user_used') }}">Used</a>
+                    <a class="nav-link" href="{{ url_for('user_products') }}">Products</a>
+                    <a class="nav-link" href="{{ url_for('user_support') }}">Support</a>
+                    <a class="nav-link" href="{{ url_for('user_about_us') }}">About Us</a>
+                    <a class="nav-link active" aria-current="page" href="{{ url_for('user_account') }}">Account</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <h1 class="text-center mt-5 bold-h1 green-text">Welcome To OnlyGreenThings!</h1>
     <br>
-    <p class="text-center">What would you like to do today, my Green Friend?</p>
-
+    <p class="text-center custom-paragraph green-text">What would you like to do today, my Green Friend?</p>
+    <br>
     <div class="d-flex justify-content-center align-items-center">
-        <a href="{{url_for('user_account_information')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Account Information</a>
-         <a href="{{url_for('cart')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">cart</a>
-        <a href="{{url_for('logout')}}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Logout</a>
+        <a href="{{ url_for('user_account_information') }}" class="btn btn-primary btn-lg active button-spacing custom-button" role="button" aria-pressed="true">Account Information</a>
+        <a href="{{ url_for('cart') }}" class="btn btn-primary btn-lg active button-spacing custom-button" role="button" aria-pressed="true">Cart</a>
+        <a href="{{ url_for('user_purchase_history') }}" class="btn btn-primary btn-lg active button-spacing custom-button" role="button" aria-pressed="true">Purchase History</a>
+        <a href="{{ url_for('logout') }}" class="btn btn-primary btn-lg active button-spacing custom-button" role="button" aria-pressed="true">Logout</a>
     </div>
+        <a href="{{ url_for('chatbot') }}" class="chatbot-fab">
+         <i class="fas fa-comments"></i>
+        </a>
 </body>
 </html>
