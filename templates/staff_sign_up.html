@@ -35,10 +35,29 @@
         .navbar-custom .navbar-brand:focus {
             color: #ffffff !important;
         }
+        .password-field-container {
+            position: relative;
+        }
+        .password-tooltip {
+            display: none;
+            width: 1270px;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 10px;
+            position: absolute;
+            z-index: 1;
+        }
+        .password-field-container:hover .password-tooltip {
+            display: block;
+        }
     </style>
 </head>
 <body>
-    <a href="{{ url_for('sign_up_landing') }}">Back</a>
+<nav class="navbar navbar-light bg-light navbar-custom">
+        <span class="navbar-brand mb-0 h1 mx-auto"><strong>OnlyGreenThings</strong></span>
+    </nav>
     <div class="container mt-5">
         <h1 class="text-center mt-5 bold-h1 green-text">Staff Sign Up</h1>
         <br class="break1">
@@ -67,8 +86,16 @@
                     {{ form.email(class="form-control") }}
                 </div>
                 <div class="mb-3">
+                    {{ form.invitation_code.label }}
+                    {{ form.invitation_code(class="form-control") }}
+                </div>
+
+                <div class="mb-3 password-field-container">
                     {{ form.password.label }}
-                    {{ form.password(class="form-control") }}
+                    {{ form.password(class="form-control password-field") }}
+                    <div class="password-tooltip">
+                        Password must contain at least one lowercase letter, one uppercase letter, and one digit, and must not include your name
+                    </div>
                 </div>
                 <div class="mb-3">
                     {{ form.confirm_password.label }}
